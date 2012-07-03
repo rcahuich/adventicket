@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 class IndexController {
 
+    static scaffold = Index
+    def mailService
+    
     def index() { 
         log.debug "Inicio"
     }
@@ -15,50 +18,61 @@ class IndexController {
     
     def contactanos() { 
         log.debug "Contactanos"
+       
     }
     
-    def solicitud = {
+    def solicitud() {
         
-        String nombre = params.nombre
-        String email = params.email
-        String comentario = params.comentario
+        def nombre = params.nombre
+        def email = params.mail
+        def comentario = params.comentario
+        
         
         if (nombre.isEmpty() || nombre == null){
-            render "El campo -Nombre- no puede ser vacio"
+            flash.error = "El campo -Nombre- no puede ser vacio"
+            chain(action: "contactanos", model: [index: new Index(params)])
             return
         }else
         if(email.isEmpty() || email == null){
-            render "El campo -Email- no puede ser vacio"
+            flash.error = "El campo -Email- no puede ser vacio"
+            chain(action: "contactanos", model: [index: new Index(params)])
             return
         }else
         if(comentario.isEmpty() || comentario == null){
-            render "El campo -Comentario- no puede ser vacio"
+            flash.error = "El campo -Comentario- no puede ser vacio"
+            chain(action: "contactanos", model: [index: new Index(params)])
             return
         }else
         if(!comentario.isEmpty() && validaEmail(email) == false){
-                render "Introduzca un correo electronico valido"
-                return
+            flash.error = "Introduzca un correo electronico valido"
+            chain(action: "contactanos", model: [index: new Index(params)])
+            return
         }
-        else{
+        
+        
+        def index = new Index(params)
+        index.validate()
+        
             try {
-                sendMail {
+                mailService.sendMail {
                     to      "hospitalgdl@gmail.com"
                     subject "Solicitud de Informacion"
                     body     """
                                    Nombre: ${params.nombre},
-                                   Email: ${params.email},
+                                   Email: ${params.mail},
                                    Comentario: ${params.comentario},
 
                                    Solicitud de Informacion.
                                    Thanks"""
             }
-            def mensaje = message(code: 'solicitud.Envio')
-            render "$mensaje"
+            flash.message = message(code: 'solicitud.Envio')
             } catch(Exception e) {
                 log.error "Problema al enviar el mail = $e.message", e
                 flash.error = message(code: 'solicitud.noEnvio')
             }
-        }
+            
+        redirect(action: "contactanos")
+        
     }
     
     boolean validaEmail(def mail){

@@ -1,3 +1,4 @@
+<%@ page import="com.adventicket.Index" %>
 <!doctype html>
 <html>
     <head>
@@ -39,42 +40,65 @@
             <div class="span9 columns">
                  <div id="map"></div>
                  
+                        <br />
+                  
+                 
           	 <g:form name="solicitudInformacion" action="solicitud" class="form-horizontal" >
                         <legend>Solicitar Información</legend>
-                          <div id="mensajeEnviado" style="font-size: 13px; text-align: center; text-decoration: underline;">
-                          </div>
-                        <br />
-                        <div class="control-group">
+                         
+                        
+                        <g:if test="${flash.message}">
+                              <div class="alert alert-info fade in" >
+                                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                    <p>- ${flash.message}</p>
+                              </div>
+                          </g:if>
+
+                          <g:if test="${flash.error}">
+                              <div class="alert alert-error fade in" >
+                                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                    <p>- ${flash.error}</p>
+                              </div>
+                          </g:if>
+
+                          <g:hasErrors bean="${index}">
+                                  <bootstrap:alert class="alert-error fade in">
+                                      <ul>
+                                          <g:eachError bean="${index}" var="error">
+                                          <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                          </g:eachError>
+                                      </ul>
+                                  </bootstrap:alert>
+                          </g:hasErrors> 
+                        
+                        <div class="control-group ${hasErrors(bean: index, field: 'nombre', 'error')}">
                           <label class="control-label" for="input01">Nombre *</label>
                           <div class="controls">
-                            <input type="text" name="nombre" class="input-xlarge" required>
+                            <input type="text" name="nombre" class="input-xlarge" value="${index?.nombre}" required>
                           </div>
                         </div>
-                        <div class="control-group">
+                        
+                        <div class="control-group ${hasErrors(bean: index, field: 'mail', 'error')}">
                           <label class="control-label" for="input01">E-mail *</label>
                           <div class="controls">
-                            <input type="email" name="email" class="input-xlarge" required>
+                            <input type="email" name="mail" class="input-xlarge" value="${index?.mail}" required>
                           </div>
                         </div>
-                        <div class="control-group">
+                        
+                        <div class="control-group ${hasErrors(bean: index, field: 'comentario', 'error')}">
                           <label class="control-label" for="textarea">Comentario *</label>
                           <div class="controls">
-                            <textarea class="input-xlarge" name="comentario" rows="3" required></textarea>
+                            <g:textArea class="input-xlarge" name="comentario" value="${index?.comentario}" rows="6" cols="40"/>
+                            
                           </div>
                         </div>
 
                         <div class="form-actions">
                           <button type="reset" class="btn">Limpiar</button>
-                          <g:submitToRemote
-                            type="submit"
-                            class="btn btn-primary"
-                            update="mensajeEnviado" 
-                            value="Enviar"
-                            url="[controller:'index', action:'solicitud']"
-                            onLoading="showSpinner(true)"  
-                            onComplete="showSpinner(false)">
-                            <img id="spinner" style="display: none" src="${resource(dir: 'images', file: 'spinner.gif')}"/>
-                          </g:submitToRemote>
+                          <button type="submit" class="btn btn-large btn-primary" >
+                              <i class="icon-comment icon-white"></i>
+                              <g:message code="solicitud.Enviar" /> &raquo;
+                          </button>
                         </div>
                   </g:form>
               
@@ -82,10 +106,5 @@
           </div>
          
     </body>
-<g:javascript>
-    function showSpinner(visible) {
-          $('#spinner').toggle();
-    }
-</g:javascript>
 
 </html>
