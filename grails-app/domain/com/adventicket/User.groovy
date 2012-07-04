@@ -57,4 +57,16 @@ class User {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
+        
+        String getNombreCompleto() {
+            if(apellidoMaterno == ""){
+                return "$nombre $apellidoPaterno "
+            }else{
+                return "$nombre $apellidoPaterno $apellidoMaterno"
+            }
+        }
+        
+        String toString() {
+            return username
+        }
 }
