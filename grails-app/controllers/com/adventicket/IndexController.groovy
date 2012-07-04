@@ -12,6 +12,10 @@ class IndexController {
         log.debug "Inicio"
     }
     
+    def index2() { 
+        log.debug "Acerca de..."
+    }
+    
     def nosotros() { 
         log.debug "Nosotros"
     }

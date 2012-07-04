@@ -4,6 +4,7 @@
 		<meta name="layout" content="bootstrap"/>
 		<title>ADVENTicket</title>
                 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                
 	</head>
 
 	<body>
@@ -65,10 +66,11 @@
                 
                 <ul class="quick-links">
                   <li class="follow-btn">
-                    <a href="https://twitter.com/ADVENTicket" class="twitter-follow-button" data-show-count="true">Sigueme @ADVENTicket</a>
+                    <a href="https://twitter.com/adventicket" class="twitter-follow-button" data-show-count="true" data-lang="es">Seguir a @adventicket</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                   </li>
                   <li class="follow-btn">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.adventicket.com" data-text="Visita el sitio" data-via="adventicket" data-lang="es" data-hashtags="evento">Twittear</a>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://adventicket.com" data-text="Visita ADENTicket" data-via="rbnseven" data-lang="es" data-hashtags="evento">Twittear</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                   </li>
                   <li class="follow-btn">

@@ -120,3 +120,8 @@ log4j = {
            'grails.app.services.grails.plugin.formfields'
 
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.adventicket.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.adventicket.UserRole'
+grails.plugins.springsecurity.authority.className = 'com.adventicket.Role'
