@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><g:layoutTitle default="${meta(name: 'app.name')}"/></title>
+    <title>ADVENTicket: <g:layoutTitle default="${meta(name: 'app.name')}"/></title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -73,7 +73,7 @@
           <ul class="nav pull-right">
                 <li class="divider-vertical"></li>
                 <sec:ifNotLoggedIn>
-                  <li><a href="${createLink(uri: '/')}"><g:message code="menu.registrate" /></a></li>
+                  <li><a href="${createLink(controller:'enrollment', action:'index')}"><g:message code="menu.registrate" /></a></li>
                  <!-- Login Starts Here -->
                   <div id="loginContainer">
                       <a href="#" id="loginButton"><span><g:message code="menu.iniciaSesion" /></span><em></em></a>
@@ -90,7 +90,6 @@
                                       <input type='password' class='text_' name='j_password' id='password'/>
                                   </fieldset>
                                   <input type='submit' id="login" value='${message(code: "springSecurity.login.button")}'/>
-                                  
                                   <label for="checkbox"><input type='checkbox' name='${rememberMeParameter}' id='checkbox' <g:if test='${hasCookie}'>checked='checked'</g:if>/><g:message code="menu.recordar" /></label>
                               </fieldset>
                               <span><a href="#"><g:message code="menu.olvidoContrasena" /></a></span>

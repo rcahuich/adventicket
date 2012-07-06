@@ -2,7 +2,7 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta name="layout" content="bootstrap"/>
-		<title>ADVENTicket</title>
+		<title><g:message code="menu.inicio" /></title>
                 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
                 
 	</head>

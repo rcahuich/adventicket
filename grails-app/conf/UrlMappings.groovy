@@ -12,6 +12,11 @@ class UrlMappings {
                     action: "index"
                 )
                 
+                "/registro"(
+                    controller: "enrollment", 
+                    action: "index"
+                )
+                
                 "500"(view:'/error/error')
                 "404"(view:'/error/notFound')
 	}
