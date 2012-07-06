@@ -2,12 +2,7 @@ package com.adventicket
 
 class EnrollmentController {
 
-    def index() { 
+    def index() { }
     
     
-    
-    
-    
-    
-    }
 }

@@ -42,7 +42,7 @@
                         
                         <div class="marketing">
                           <h1>Grails & Groovy - Twitter Bootstrap.</h1>
-                          <p class="marketing-byline">Información del Sitio</p>
+                          <p><h2>Información del Sitio</h2></p>
                           <div class="row-fluid">
                           <div class="span4">
                                     <h2>Controladores</h2>
