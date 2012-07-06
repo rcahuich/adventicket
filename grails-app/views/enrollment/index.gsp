@@ -10,7 +10,6 @@
     <head>
             <title><g:message code="enrollment.title.label" /></title>
             <meta name="layout" content="bootstrap">
-
     </head>
     <body>
       
@@ -23,23 +22,18 @@
           <p><g:message code="enrollment.instruction2.label" /></p>
           <br/>
           <div class="hero-form span8">
-            <g:form action="createEnrollment" class="">
-                    <fieldset class="form">
+            
+            <g:form action="createEnrollment" class="form-horizontal">
+                
                             <g:render template="formEnrollment"/>
-                    </fieldset>	
-
-                    <button class="button_orange" type="submit" style="margin-left:75px;">
-                            <span><g:message code="enrollment.enrollmentSendConfirmation.label" default="Enviar confirmación"/></span>
-                    </button>
-
+                            
+                            <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                            <i class="icon-ok icon-white"></i>
+                                            <g:message code="default.button.create.label" default="Create" />
+                                    </button>
+                            </div>
             </g:form>
-          
-          
-          
-          
-          
-          
-          
           </div>
           
         </div>
