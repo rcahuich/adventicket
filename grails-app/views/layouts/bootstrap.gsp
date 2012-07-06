@@ -60,20 +60,20 @@
             <span class="icon-bar"></span>
           </a>
           
-          <a href="${createLink(uri: '/')}" ><img src="${resource(dir: 'images', file: 'logoPNG.png')}" alt="" title="" border="0" style="float: left; width: 140px; height: 37px;"/> </a>
+          <a href="${createLink(uri: '/')}" rel="tooltip" title="Inicio" ><img src="${resource(dir: 'images', file: 'logoPNG.png')}" alt="" title="" border="0" style="float: left; width: 140px; height: 37px;"/> </a>
                                         
           <div class="nav-collapse">
             <ul class="nav">
               <li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}"><i class="icon-home icon-white"></i><g:message code="menu.inicio" /></a></li>
-              <li<%= request.forwardURI == "${createLink(uri: '/index/nosotros')}" ? ' class="active"' : '' %>><a href="${createLink(action: 'nosotros')}"><g:message code="menu.nosotros" /></a></li>
-              <li<%= request.forwardURI == "${createLink(uri: '/index/contactanos')}" ? ' class="active"' : '' %>><a href="${createLink(action: 'contactanos')}"><g:message code="menu.contactanos" /></a></li>
+              <li<%= request.forwardURI == "${createLink(uri: '/nosotros')}" ? ' class="active"' : '' %>><a href="${createLink(controller: 'index', action: 'nosotros')}"><g:message code="menu.nosotros" /></a></li>
+              <li<%= request.forwardURI == "${createLink(uri: '/contactanos')}" ? ' class="active"' : '' %>><a href="${createLink(controller: 'index', action: 'contactanos')}"><g:message code="menu.contactanos" /></a></li>
             </ul>
           </div>
     
           <ul class="nav pull-right">
-                <li class="divider-vertical"></li>
+                
                 <sec:ifNotLoggedIn>
-                  <li><a href="${createLink(controller:'enrollment', action:'index')}"><g:message code="menu.registrate" /></a></li>
+                  <li<%= request.forwardURI == "${createLink(uri: '/registro')}" ? ' class="active"' : '' %>><a href="${createLink(controller:'enrollment', action:'index')}"><g:message code="menu.registrate" /></a></li>
                  <!-- Login Starts Here -->
                   <div id="loginContainer">
                       <a href="#" id="loginButton"><span><g:message code="menu.iniciaSesion" /></span><em></em></a>

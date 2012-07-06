@@ -12,10 +12,22 @@ class UrlMappings {
                     action: "index"
                 )
                 
+                "/nosotros"(
+                    controller: "index", 
+                    action: "nosotros"
+                )
+                
+                "/contactanos"(
+                    controller: "index", 
+                    action: "contactanos"
+                )
+                
                 "/registro"(
                     controller: "enrollment", 
                     action: "index"
                 )
+                
+                
                 
                 "500"(view:'/error/error')
                 "404"(view:'/error/notFound')
