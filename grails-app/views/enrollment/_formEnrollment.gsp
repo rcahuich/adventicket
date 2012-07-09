@@ -5,27 +5,39 @@
                       <g:message code="enrollment.form.username.label" />
                       <span class="required-indicator">*</span>
               </label>
-              <g:textField name="username" required="" value="${user?.username}"/>
+              <g:textField name="username" required="" value="${user?.username}" />
       </div>
 
       <div class="fieldcontain ${hasErrors(bean: user, field: 'correo', 'error')} required">
               <label style="width: 150px;" for="correo">
-                      <g:message code="user.correo.label" default="Correo" />
+                      <g:message code="enrollment.form.correo.label"/>
                       <span class="required-indicator">*</span>
               </label>
-              <g:field type="email" name="correo" maxlength="128" required="" value="${user?.correo}"/>
+              <g:field type="email" name="correo" maxlength="128" required="" value="${user?.correo}" placeholder="${message(code:"enrollment.form.correo.placeHolder.label")}"/>
+              <span class="help-inline"><strong><g:message code="enrollment.form.correo.note.title.label"/>:</strong> <g:message code="enrollment.form.correo.note.label"/></span>
       </div>
     
     <div class="fieldcontain ${hasErrors(bean: user, field: 'password', 'error')} required">
               <label style="width: 150px;" for="password">
-                      <g:message code="user.password.label" default="Password" />
+                      <g:message code="enrollment.form.password.label"/>
+                      <span class="required-indicator">*</span>
               </label>
-              <g:textField name="password" required="" value="${user?.password}"/>
+              <g:passwordField name="password" required="" value="${user?.password}"/>
       </div>
+
+    <div class="fieldcontain required">
+              <label style="width: 150px;" for="password">
+                      <g:message code="enrollment.form.confirmPassword.label"/>
+                      <span class="required-indicator">*</span>
+              </label>
+              <g:passwordField name="confirmPassword" required="" value="${params?.confirmPassword}" placeholder="${message(code:"enrollment.form.confirmPassword.placeHolder.label")}"/>
+      </div>
+<br/>
+<legend><g:message code="enrollment.form.title2.label" /></legend>
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'nombre', 'error')} required">
               <label style="width: 150px;" for="nombre">
-                      <g:message code="user.nombre.label" default="Nombre" />
+                      <g:message code="enrollment.form.nombre.label"/>
                       <span class="required-indicator">*</span>
               </label>
               <g:textField name="nombre" maxlength="64" required="" value="${user?.nombre}"/>
@@ -33,7 +45,7 @@
 
       <div class="fieldcontain ${hasErrors(bean: user, field: 'apellidoPaterno', 'error')} required">
               <label style="width: 150px;" for="apellidoPaterno">
-                      <g:message code="user.apellidoPaterno.label" default="Apellido Paterno" />
+                      <g:message code="enrollment.form.apellidoPaterno.label" />
                       <span class="required-indicator">*</span>
               </label>
               <g:textField name="apellidoPaterno" maxlength="64" required="" value="${user?.apellidoPaterno}"/>
@@ -41,7 +53,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'apellidoMaterno', 'error')} ">
 	<label style="width: 150px;" for="apellidoMaterno">
-		<g:message code="user.apellidoMaterno.label" default="Apellido Materno" />
+		<g:message code="enrollment.form.apellidoMaterno.label" />
 		
 	</label>
 	<g:textField name="apellidoMaterno" maxlength="64" value="${user?.apellidoMaterno}"/>
@@ -49,17 +61,52 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'sexo', 'error')} ">
 	<label style="width: 150px;" for="sexo">
-		<g:message code="user.sexo.label" default="Sexo" />
-		
+		<g:message code="enrollment.form.sexo.label" />
+                <span class="required-indicator">*</span>
 	</label>
-	<g:select name="sexo" from="${user.constraints.sexo.inList}" value="${user?.sexo}" valueMessagePrefix="user.sexo" noSelection="['': '']"/>
+        <g:select name="sexo" from="${[ 'Masculino', 'Femenino']}" value="${user?.sexo}"  valueMessagePrefix="enrollment.form.sexo" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: user, field: 'fechaDeNacimiento', 'error')} required">
+	<label style="width: 150px;" for="fechaDeNacimiento">
+		<g:message code="enrollment.form.fechaDeNacimiento.label" />
+		<span class="required-indicator">*</span>
+	</label>
+        <g:textField type="text" id="datepicker" name="fechaDeNacimiento" value="${user?.fechaDeNacimiento}" placeholder="${message(code:"enrollment.form.fechaDeNacimiento.placeHolder.label")}" class="input-small"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: usuario, field: 'imagenes', 'error')} required">
+        <label style="width: 150px;" for="imagen">
+                <g:message code="enrollment.form.foto.label" />
+        </label>
+        <input type="file" name="imagen" id="imagen" />
+        <span class="help-inline"><strong><g:message code="enrollment.form.imagen.note.title.label"/>:</strong> <g:message code="enrollment.form.imagen.note.label"/></span>
+</div>
+
+<br/>
+<legend><g:message code="enrollment.form.title3.label" /></legend>
+<div class="fieldcontain required">
+        <label style="width: 150px;" for="imagen">
+                <g:message code="enrollment.form.asociacion.label" />
+        </label>
+        <select onchange="${remoteFunction(action: 'bookByName',
+                              update: [success: 'great', failure: 'ohno'],
+                              params: '\'bookName=\' + this.value')}">
+            <option>first</option>
+            <option>second</option>
+        </select>
+        
 </div>
 
 
 
+<br/>
+<recaptcha:recaptcha theme="white" lang="es"/>
+
+<!--
 <div class="fieldcontain ${hasErrors(bean: user, field: 'accountExpired', 'error')} ">
 	<label style="width: 150px;" for="accountExpired">
-		<g:message code="user.accountExpired.label" default="Account Expired" />
+		<g:message code="enrollment.form.accountExpired.label" />
 		
 	</label>
 	<g:checkBox name="accountExpired" value="${user?.accountExpired}" />
@@ -67,7 +114,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'accountLocked', 'error')} ">
 	<label style="width: 150px;" for="accountLocked">
-		<g:message code="user.accountLocked.label" default="Account Locked" />
+		<g:message code="enrollment.form.accountLocked.label" />
 		
 	</label>
 	<g:checkBox name="accountLocked" value="${user?.accountLocked}" />
@@ -75,7 +122,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'asistir', 'error')} ">
 	<label style="width: 150px;" for="asistir">
-		<g:message code="user.asistir.label" default="Asistir" />
+		<g:message code="enrollment.form.asistir.label"/>
 		
 	</label>
 	<g:checkBox name="asistir" value="${user?.asistir}" />
@@ -83,7 +130,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'enabled', 'error')} ">
 	<label style="width: 150px;" for="enabled">
-		<g:message code="user.enabled.label" default="Enabled" />
+		<g:message code="enrollment.form.enabled.label"/>
 		
 	</label>
 	<g:checkBox name="enabled" value="${user?.enabled}" />
@@ -91,23 +138,15 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'fechaDeAlta', 'error')} required">
 	<label style="width: 150px;" for="fechaDeAlta">
-		<g:message code="user.fechaDeAlta.label" default="Fecha De Alta" />
+		<g:message code="enrollment.form.fechaDeAlta.label" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="fechaDeAlta" precision="day"  value="${user?.fechaDeAlta}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: user, field: 'fechaDeNacimiento', 'error')} required">
-	<label style="width: 150px;" style="width: 150px;" for="fechaDeNacimiento">
-		<g:message code="user.fechaDeNacimiento.label" default="Fecha De Nacimiento" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="fechaDeNacimiento" precision="day"  value="${user?.fechaDeNacimiento}"  />
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: user, field: 'passwordExpired', 'error')} ">
 	<label style="width: 150px;" for="passwordExpired">
-		<g:message code="user.passwordExpired.label" default="Password Expired" />
+		<g:message code="enrollment.form.passwordExpired.label" />
 		
 	</label>
 	<g:checkBox name="passwordExpired" value="${user?.passwordExpired}" />
@@ -115,9 +154,17 @@
 
 <div class="fieldcontain ${hasErrors(bean: user, field: 'talVez', 'error')} ">
 	<label style="width: 150px;" for="talVez">
-		<g:message code="user.talVez.label" default="Tal Vez" />
+		
+          <g:message code="enrollment.form.talVez.label" />
 		
 	</label>
 	<g:checkBox name="talVez" value="${user?.talVez}" />
 </div>
+-->
+
+
+
+
+  
+
 

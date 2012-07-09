@@ -25,15 +25,15 @@ class User {
         static transients = ['nombreCompleto']
 
 	static constraints = {
-		username blank: false, unique: true, validator: { val, obj ->
+		username (blank: false, unique: true, validator: { val, obj ->
                                                                 obj.password == val ? 'userPassError' : true
-                                                            }
-		password blank: false
-                nombre   blank: false, maxSize: 64
-                apellidoPaterno blank: false, maxSize: 64
-                apellidoMaterno blank: true, maxSize: 64
-                sexo inList: ["Femenino", "Masculino"]
-                correo unique: true, blank: false, maxSize: 128, email:true
+                                                            })
+		password (password:true, blank: false, nullable:false)
+                nombre (blank: false, maxSize: 64)
+                apellidoPaterno (blank: false, maxSize: 64)
+                apellidoMaterno (blank: true, maxSize: 64)
+                sexo (inList: ["Femenino", "Masculino"])
+                correo (unique: true, blank: false, maxSize: 128, email:true)
 	}
 
 	static mapping = {
@@ -67,6 +67,6 @@ class User {
         }
         
         String toString() {
-            return username
+            return "$username | $nombre $apellidoPaterno"
         }
 }

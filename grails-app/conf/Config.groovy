@@ -59,6 +59,19 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+//Jquery theme
+grails.resources.modules = {
+    core {
+        dependsOn 'jquery-ui'
+    }
+// Define reference to custom jQuery UI theme
+    overrides {
+        'jquery-theme' {
+        resource id: 'theme', url: '/css/custom-theme/jquery-ui-1.8.21.custom.css'
+    }
+  }
+}
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {

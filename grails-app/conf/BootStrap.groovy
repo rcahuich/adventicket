@@ -46,6 +46,23 @@ class BootStrap {
             evento.save(flush:true)
             UserRole.create(evento, rolEvento, true)
         }
+        
+        log.debug "Creando Uniones"
+        def unionMN = Union.findByNombre('Union Mexicana del Norte') ?: new Union(nombre: 'Union Mexicana del Norte').save(flush:true)
+        def unionMS = Union.findByNombre('Union Mexicana del Sur') ?: new Union(nombre: 'Union Mexicana del Sur').save(flush:true)
+        def unionMC = Union.findByNombre('Union Mexicana Central') ?: new Union(nombre: 'Union Mexicana Central').save(flush:true)
+        def unionMI = Union.findByNombre('Union Interoceanica') ?: new Union(nombre: 'Union Interoceanica').save(flush:true)
+        
+        log.debug "Creando Asociaciones"
+        def asociacionNE = Union.findByNombre('Asociacion del Noreste') ?: new Union(nombre: 'Asociacion del Noreste', union: unionMN).save(flush:true)
+        def asociacionNO = Union.findByNombre('Asociacion del Noroeste') ?: new Union(nombre: 'Asociacion del Noroeste', union: unionMN).save(flush:true)
+        def asociacionMa = Union.findByNombre('Asociacion del Mayab') ?: new Union(nombre: 'Asociacion del Mayab', union: unionMS).save(flush:true)
+        def asociacionSO = Union.findByNombre('Asociacion del Soconusco') ?: new Union(nombre: 'Asociacion del Soconusco', union: unionMS).save(flush:true)
+        def asociacionME = Union.findByNombre('Asociacion Metropolitana') ?: new Union(nombre: 'Asociacion Metropolitana', union: unionMC).save(flush:true)
+        
+        
+        log.debug "Aplicacion Inicializada"
+        
     }
     def destroy = {
     }

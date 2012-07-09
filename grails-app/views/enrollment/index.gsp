@@ -1,7 +1,3 @@
-<!--
-  To change this template, choose Tools | Templates
-  and open the template in the editor.
--->
 <%@ page import="com.adventicket.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
@@ -10,6 +6,24 @@
     <head>
             <title><g:message code="enrollment.title.label" /></title>
             <meta name="layout" content="bootstrap">
+            
+            <r:require module="jquery-ui"/>
+            
+            <script type="text/javascript">
+                $(document).ready(function(){
+                  $('#datepicker').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    changeMonth: true, 
+                    changeYear: true, 
+                    yearRange: '-100:+0',
+                    showOn: "button",
+                    buttonImage: "images/Calendar.gif",
+                    buttonImageOnly: true,
+                    maxDate: 0
+                  });
+                })
+            </script>
+
     </head>
     <body>
       
@@ -22,8 +36,7 @@
           <p><g:message code="enrollment.instruction2.label" /></p>
           <br/>
           <div class="hero-form span8">
-            
-            <g:form action="createEnrollment" class="form-horizontal">
+            <g:form action="createEnrollment" class="form-horizontal" enctype="multipart/form-data">
                 
                             <g:render template="formEnrollment"/>
                             

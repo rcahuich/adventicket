@@ -28,7 +28,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <g:javascript src="prettify.js" />
-    <g:javascript src="application.js" />
     <g:javascript src="jquery.js" />
     <g:javascript src="bootstrap-alert.js" />
     <g:javascript src="bootstrap-transition.js" />
