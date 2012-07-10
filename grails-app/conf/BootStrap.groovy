@@ -54,11 +54,11 @@ class BootStrap {
         def unionMI = Union.findByNombre('Union Interoceanica') ?: new Union(nombre: 'Union Interoceanica').save(flush:true)
         
         log.debug "Creando Asociaciones"
-        def asociacionNE = Union.findByNombre('Asociacion del Noreste') ?: new Union(nombre: 'Asociacion del Noreste', union: unionMN).save(flush:true)
-        def asociacionNO = Union.findByNombre('Asociacion del Noroeste') ?: new Union(nombre: 'Asociacion del Noroeste', union: unionMN).save(flush:true)
-        def asociacionMa = Union.findByNombre('Asociacion del Mayab') ?: new Union(nombre: 'Asociacion del Mayab', union: unionMS).save(flush:true)
-        def asociacionSO = Union.findByNombre('Asociacion del Soconusco') ?: new Union(nombre: 'Asociacion del Soconusco', union: unionMS).save(flush:true)
-        def asociacionME = Union.findByNombre('Asociacion Metropolitana') ?: new Union(nombre: 'Asociacion Metropolitana', union: unionMC).save(flush:true)
+        def asociacionNE = Asociacion.findByNombre('Asociacion del Noreste') ?: new Asociacion(nombre: 'Asociacion del Noreste', union: unionMN).save(flush:true)
+        def asociacionNO = Asociacion.findByNombre('Asociacion del Noroeste') ?: new Asociacion(nombre: 'Asociacion del Noroeste', union: unionMN).save(flush:true)
+        def asociacionMa = Asociacion.findByNombre('Asociacion del Mayab') ?: new Asociacion(nombre: 'Asociacion del Mayab', union: unionMS).save(flush:true)
+        def asociacionSO = Asociacion.findByNombre('Asociacion del Soconusco') ?: new Asociacion(nombre: 'Asociacion del Soconusco', union: unionMS).save(flush:true)
+        def asociacionME = Asociacion.findByNombre('Asociacion Metropolitana') ?: new Asociacion(nombre: 'Asociacion Metropolitana', union: unionMC).save(flush:true)
         
         
         log.debug "Aplicacion Inicializada"

@@ -89,13 +89,18 @@
         <label style="width: 150px;" for="imagen">
                 <g:message code="enrollment.form.asociacion.label" />
         </label>
-        <select onchange="${remoteFunction(action: 'bookByName',
-                              update: [success: 'great', failure: 'ohno'],
-                              params: '\'bookName=\' + this.value')}">
-            <option>first</option>
-            <option>second</option>
-        </select>
-        
+        <g:select 
+          id="type" 
+          name='unionId' 
+          value=""
+          noSelection="${['null':'Select One...']}"
+          from='${com.adventicket.Union.list()}'
+          optionKey="id" 
+          optionValue="nombre"
+          onchange="{remoteFunction(controller: 'enrollment', action: 'unionByName',
+                                    update: [success: 'great', failure: 'ohno'],
+                                    params: '\'unionId=\' + this.value')}">
+        </g:select>
 </div>
 
 
