@@ -7,7 +7,7 @@ class EnrollmentController {
     
     def unionByName() {
         log.debug "Buscando... ${params.unionId}"
-        [book: Asociacion.findByNombre(params.unionId)]
+        [book: Asociacion.findByUnion(params.unionId)]
     }
     
     
