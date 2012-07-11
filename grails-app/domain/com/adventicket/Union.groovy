@@ -3,7 +3,6 @@ package com.adventicket
 class Union {
     
     String nombre
-    Set asociacion
     
     static hasMany = [asociacion: Asociacion]
 
