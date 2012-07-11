@@ -3,6 +3,7 @@ package com.adventicket
 class Asociacion {
 
     String nombre
+    Union union
 
     static belongsTo = [union: Union]
     
@@ -14,6 +15,6 @@ class Asociacion {
     }
     
     String toString() {
-            return "$nombre"
+            return "$union | $nombre" 
         }
 }
