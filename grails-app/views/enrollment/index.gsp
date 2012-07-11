@@ -8,6 +8,8 @@
             <meta name="layout" content="bootstrap">
             
             <r:require module="jquery-ui"/>
+            <link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
+            <g:javascript src="chosen.jquery.js" />
             
             <script type="text/javascript">
                 $(document).ready(function(){
@@ -24,6 +26,12 @@
                 })
             </script>
 
+            <script type="text/javascript">
+              $(".chzn-select").chosen();
+              $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+            </script>
+           
+
     </head>
     <body>
       
@@ -35,7 +43,9 @@
           <p><g:message code="enrollment.instruction1.label" /></p>
           <p><g:message code="enrollment.instruction2.label" /></p>
           <br/>
+           
           <div class="hero-form span8">
+
             <g:form action="createEnrollment" class="form-horizontal" enctype="multipart/form-data">
                 
                             <g:render template="formEnrollment"/>

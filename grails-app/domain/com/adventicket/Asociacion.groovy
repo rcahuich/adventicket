@@ -14,6 +14,6 @@ class Asociacion {
     }
     
     String toString() {
-            return "$union | $nombre" 
+            return "$nombre" 
         }
 }

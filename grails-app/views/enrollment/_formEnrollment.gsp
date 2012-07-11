@@ -91,7 +91,8 @@
         </label>
          
   <% 
-  
+    def map = [:]   
+    com.adventicket.Union.list().each{it -> map.putAt(it.nombre, it.asociacion)}
   %>
   
   <test:optGroup name = "data" dataMap="${map}" />
@@ -99,6 +100,7 @@
         
 
 
+<br/>
 <br/>
 <recaptcha:recaptcha theme="white" lang="es"/>
 

@@ -5,7 +5,7 @@ class TestTagLib {
  
     def optGroup = {attrs ->
         Map dataMap = attrs['dataMap']
-        out << g.render(template: 'layouts/optSelect', model: [dataMap:dataMap])
+        out << g.render(template: '/layouts/optSelect', model: [dataMap:dataMap])
     }
 
 }
