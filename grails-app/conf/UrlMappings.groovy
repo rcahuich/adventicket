@@ -7,28 +7,40 @@ class UrlMappings {
 			}
 		}
                 
-                "/"(
-                    controller: "index", 
-                    action: "index"
-                )
+                "/"{
+                    controller= 'index' 
+                    action= 'index'
+                }
                 
-                "/nosotros"(
-                    controller: "index", 
-                    action: "nosotros"
-                )
+                "/nosotros"{
+                    controller= 'index'
+                    action= 'nosotros'
+                }
                 
-                "/contactanos"(
-                    controller: "index", 
-                    action: "contactanos"
-                )
+                "/contactanos"{
+                    controller= 'index'
+                    action= 'contactanos'
+                }
                 
-                "/registro"(
-                    controller: "enrollment", 
-                    action: "index"
-                )
+                "/registro"{
+                    controller= 'enrollment'
+                    action= 'index'
+                }
                 
+                "/registro/confirma"{
+                    controller= 'enrollment'
+                    action= 'presend'
+                }
                 
+                "/registro/envia"{
+                    controller='enrollment'
+                    action='send'
+                }
                 
+                "/registro/corrige"{
+                    controller='enrollment'
+                    action='correct'
+                }
                 "500"(view:'/error/error')
                 "404"(view:'/error/notFound')
 	}

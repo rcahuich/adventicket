@@ -80,10 +80,10 @@ class EnrollmentController {
         recaptchaService.cleanUp(session)
         
         user.save(flush: true);                           
-        chain(action: "preSend", model: [user: user])
+        chain(action: "presend", model: [user: user])
     }
     
-    def preSend(){
+    def presend(){
         if(!chainModel){
             redirect action: 'index'
         }
