@@ -8,9 +8,6 @@
             <meta name="layout" content="bootstrap">
             
             <r:require module="jquery-ui"/>
-            <link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
-            <g:javascript src="chosen.jquery.js" />
-            
             <script type="text/javascript">
                 $(document).ready(function(){
                   $('#datepicker').datepicker({
@@ -25,13 +22,6 @@
                   });
                 })
             </script>
-
-            <script type="text/javascript">
-              $(".chzn-select").chosen();
-              $(".chzn-select-deselect").chosen({allow_single_deselect:true});
-            </script>
-           
-
     </head>
     <body>
       
@@ -45,7 +35,23 @@
           <br/>
            
           <div class="hero-form span8">
-
+            
+            <g:hasErrors bean="${user}">
+                    <ul class="alert alert-error">
+                      <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            <g:eachError bean="${user}" var="error">
+                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                            </g:eachError>
+                    </ul>
+            </g:hasErrors>
+            <g:if test="${flash.error}">
+              <div class="alert alert-error fade in" >
+              <a class="close" data-dismiss="alert" href="#">&times;</a>
+                    <ul>
+                            <li>${flash.error}</li>
+                    </ul>
+              </div>
+            </g:if>
             <g:form action="createEnrollment" class="form-horizontal" enctype="multipart/form-data">
                 
                             <g:render template="formEnrollment"/>

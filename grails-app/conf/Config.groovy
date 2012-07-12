@@ -76,7 +76,10 @@ grails.resources.modules = {
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.serverURL = "http://localhost:8080"
+        
         // Configuracion de Emails
+        grails.fromMailAddress = "hospitalgdl@gmail.com"
         grails {
             mail {
                 host = "smtp.gmail.com"

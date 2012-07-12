@@ -72,7 +72,15 @@
 		<g:message code="enrollment.form.fechaDeNacimiento.label" />
 		<span class="required-indicator">*</span>
 	</label>
-        <g:textField type="text" id="datepicker" name="fechaDeNacimiento" value="${user?.fechaDeNacimiento}" placeholder="${message(code:"enrollment.form.fechaDeNacimiento.placeHolder.label")}" class="input-small"/>
+        <%  
+		def fecha = ''
+
+		if(user?.fechaDeNacimiento != null){
+			fecha = user?.fechaDeNacimiento
+			fecha = fecha.format("dd/MM/yyyy")
+		}
+	%>
+        <g:textField type="text" id="datepicker" required="" name="fechaDeNacimiento" readonly="true" value="${fecha}" placeholder="${message(code:"enrollment.form.fechaDeNacimiento.placeHolder.label")}" class="input-small"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: usuario, field: 'imagenes', 'error')} required">
@@ -96,9 +104,7 @@
   %>
   
   <test:optGroup name = "data" dataMap="${map}" />
-  
-        
-
+</div>
 
 <br/>
 <br/>

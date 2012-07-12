@@ -20,10 +20,12 @@ class User {
         String correo
         boolean asistir = false
         boolean talVez = false
+        //Asociacion asociacion
         
         String nombreCompleto
         static transients = ['nombreCompleto']
-
+        static hasMany = [imagenes: Imagen]
+        
 	static constraints = {
 		username (blank: false, unique: true, validator: { val, obj ->
                                                                 obj.password == val ? 'userPassError' : true
@@ -57,6 +59,16 @@ class User {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
+        
+        String getEdad(){
+            def dob = fechaDeNacimiento.toCalendar()
+            def today = Calendar.getInstance()	
+            def age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+            if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+                age--
+            }
+          return age  
+        }
         
         String getNombreCompleto() {
             if(apellidoMaterno == ""){

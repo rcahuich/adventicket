@@ -1,4 +1,4 @@
-<select name="mainList" placeholder="Seleccione su Asociación">
+<select name="asociacion" placeholder="Seleccione su Asociación">
         <g:each in="${dataMap}" var="data">
         <optgroup label="${data.key}">
             <g:each in="${data.value}" var="value">
