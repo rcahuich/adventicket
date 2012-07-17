@@ -7,6 +7,8 @@ class IndexController {
 
     static scaffold = Index
     def mailService
+    def grailsApplication    
+    grails.gsp.PageRenderer groovyPageRenderer  
     
     def index() { 
         log.debug "Inicio"
@@ -56,26 +58,22 @@ class IndexController {
         
         def index = new Index(params)
         index.validate()
-        
-            try {
-                mailService.sendMail {
-                    to      "hospitalgdl@gmail.com"
-                    subject "Solicitud de Informacion"
-                    body     """
-                                   Nombre: ${params.nombre},
-                                   Email: ${params.mail},
-                                   Comentario: ${params.comentario},
-
-                                   Solicitud de Informacion.
-                                   Thanks"""
+        def contenido = groovyPageRenderer.render(view:"/mail/contact", model:[user:index])        
+        try {
+            //TODO parametrizar mensaje en subject
+            mailService.sendMail {
+                to "hospitalgdl@gmail.com" 
+                from grailsApplication.config.grails.fromMailAddress
+                subject "Solicitud de Información"
+                html contenido
             }
             flash.message = message(code: 'solicitud.Envio')
-            } catch(Exception e) {
-                log.error "Problema al enviar el mail = $e.message", e
-                flash.error = message(code: 'solicitud.noEnvio')
-            }
-            
-        redirect(action: "contactanos")
+        } catch (Exception e) {
+             log.error "Problema al enviar el mail = $e.message", e
+            flash.error = message(code: 'solicitud.noEnvio')
+        }
+        
+        chain(action: "contactanos")
         
     }
     

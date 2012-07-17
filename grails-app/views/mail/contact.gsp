@@ -45,14 +45,11 @@
                                       <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                                           <tbody><tr>
                                               <td class="w580" width="580">
-                                                <p align="left" style="font-size: 18px; line-height:20px; color: #333333; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;"><singleline label="Title"><g:message code="enrollment.sendConfirmation1.label" args="${[user.nombre]}" /></singleline></p>
+                                                <p align="left" style="font-size: 18px; line-height:20px; color: #333333; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;"><singleline label="Title"><g:message code="index.contact1.label" /></singleline></p>
                                                   <div align="left" class="article-content"> 
-                                                      <p label="Description"> <g:message code="enrollment.sendConfirmation2.label" /> </p>
-                                                      <p label="Description"> <g:message code="enrollment.sendConfirmation3.label" /> </p>
-                                                      <p label="Description"> <a style="color: #353594; font-weight:bold; text-decoration:none;" href="${uri}">${uri}</a> </multiline>
-                                                      <p label="Description"> <g:message code="enrollment.sendConfirmation4.label" /> </p>
-                                                      <p label="Description"> <g:message code="enrollment.sendConfirmation5.label" /> </p>
-                                                      <p label="Description"> <g:message code="enrollment.sendConfirmation6.label" /> </p>
+                                                      <p label="Description"> <g:message code="index.contact2.label" /> <br/> ${user.nombre}</p>
+                                                      <p label="Description"> <g:message code="index.contact3.label" /> <br/> ${user.mail}</p>
+                                                      <p label="Description"> <g:message code="index.contact4.label" /> <br/> ${user.comentario}</p>
                                                   </div>
                                               </td>
                                           </tr>

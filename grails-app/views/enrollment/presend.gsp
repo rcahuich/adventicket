@@ -20,13 +20,15 @@
           <div class="hero-form span8">
             <dl class="dl-horizontal">
                       <dt><g:message code="enrollment.preSend.username.label" /></dt><dd>${user?.username}</dd>
-                      <dt><g:message code="enrollment.preSend.fechaDeNacimiento.label" /></dt><dd><g:formatDate date="${user?.fechaDeNacimiento}"/></dd>
+                      <dt><g:message code="enrollment.preSend.fechaDeNacimiento.label" /></dt><dd><g:formatDate format="MMMMM d, yyyy" date="${user?.fechaDeNacimiento}"/></dd>
                       <dt><g:message code="enrollment.preSend.correo.label" /></dt><dd>${user?.correo}</dd>
             </dl>
             <br/>
             <div class="form-actions">
-               <g:set var="idUsuario" value="${user.id }" scope="session" /> 
-                    <a href="${createLink(action:'send')}" class="btn btn-primary btn-large"><g:message code="enrollment.preSend.sendConfirmation.button"/></a>&nbsp;<a href="${createLink(action:'correct')}" class="btn btn-info btn-large"><g:message code="enrollment.preSend.correctData.button"/></a>
+                    <g:set var="idUsuario" value="${user.id }" scope="session" />
+                    <div style="float: right">
+                       <a href="${createLink(action:'send')}" class="btn btn-primary"><i class="icon-envelope icon-white"></i> <g:message code="enrollment.preSend.sendConfirmation.button"/></a>&nbsp;<a href="${createLink(action:'correct')}" class="btn btn-info"><i class="icon-edit icon-white"></i> <g:message code="enrollment.preSend.correctData.button"/></a>
+                    </div>
             </div>
           </div>
           
