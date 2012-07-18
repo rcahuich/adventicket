@@ -6,6 +6,7 @@ class User {
 
 	String username
 	String password
+        //String confirmationPassword
 	boolean enabled = true
 	boolean accountExpired = false
 	boolean accountLocked = false
@@ -20,7 +21,7 @@ class User {
         String correo
         boolean asistir = false
         boolean talVez = false
-        //Asociacion asociacion
+        Asociacion asociacion
         
         String nombreCompleto
         static transients = ['nombreCompleto']
@@ -31,6 +32,9 @@ class User {
                                                                 obj.password == val ? 'userPassError' : true
                                                             })
 		password (password:true, blank: false, nullable:false)
+                /*confirmationPassword (password:true, blank:false, nullable:false, validator:{ value, reference ->
+								    return value == reference.password
+								    })*/
                 nombre (blank: false, maxSize: 64)
                 apellidoPaterno (blank: false, maxSize: 64)
                 apellidoMaterno (blank: true, maxSize: 64)

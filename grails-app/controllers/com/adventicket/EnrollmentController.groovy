@@ -14,7 +14,7 @@ class EnrollmentController {
     def createEnrollment() {
         log.debug ":::: ${params}"
         //validar contrasenas
-        if (params.password != params.confirmPassword) {
+        if (params.password != params.confirmationPassword) {
             flash.error = message(code: 'enrollment.controller.differentPasswords.label')
             chain(action: "index", model: [user: new User(params)])
             return
