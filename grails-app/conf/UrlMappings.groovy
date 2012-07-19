@@ -41,6 +41,11 @@ class UrlMappings {
                     controller='enrollment'
                     action='correct'
                 }
+                
+                "/salir"{
+			controller='logout'
+			action='index'
+		}
                 "500"(view:'/error/error')
                 "404"(view:'/error/notFound')
 	}

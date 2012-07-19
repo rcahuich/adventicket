@@ -112,6 +112,20 @@
 						
 					</g:if>
 				
+					<g:if test="${userInstance?.asociacion}">
+						<dt><g:message code="user.asociacion.label" default="Asociacion" /></dt>
+						
+							<dd><g:link controller="asociacion" action="show" id="${userInstance?.asociacion?.id}">${userInstance?.asociacion?.encodeAsHTML()}</g:link></dd>
+						
+					</g:if>
+				
+					<g:if test="${userInstance?.confirmationPassword}">
+						<dt><g:message code="user.confirmationPassword.label" default="Confirmation Password" /></dt>
+						
+							<dd><g:fieldValue bean="${userInstance}" field="confirmationPassword"/></dd>
+						
+					</g:if>
+				
 					<g:if test="${userInstance?.enabled}">
 						<dt><g:message code="user.enabled.label" default="Enabled" /></dt>
 						
@@ -130,6 +144,15 @@
 						<dt><g:message code="user.fechaDeNacimiento.label" default="Fecha De Nacimiento" /></dt>
 						
 							<dd><g:formatDate date="${userInstance?.fechaDeNacimiento}" /></dd>
+						
+					</g:if>
+				
+					<g:if test="${userInstance?.imagenes}">
+						<dt><g:message code="user.imagenes.label" default="Imagenes" /></dt>
+						
+							<g:each in="${userInstance.imagenes}" var="i">
+							<dd><g:link controller="imagen" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></dd>
+							</g:each>
 						
 					</g:if>
 				

@@ -104,10 +104,26 @@
   %>
   
   <test:optGroup name = "data" dataMap="${map}" />
+  
+  <g:select
+    name="filter" 
+    noSelection="['null':'']"
+    from="${['Union Mexicana del Norte', 'Union Mexicana del Sur', 'Union Mexicana Central', 'Union Mexicana Interoceanica']}"
+    valueMessagePrefix="filter"
+    value="${filter}"
+    onchange="${remoteFunction(action:'searchAsociacion', 
+                update:'results',
+                params:'\'filter=\' + escape(this.value)' )}" />
+  
+</div>
+
+asociacion
+<div id="results">
 </div>
 
 <br/>
 <br/>
+<legend><g:message code="enrollment.form.title4.label" /></legend>
 <recaptcha:recaptcha theme="white" lang="es"/>
 
 <!--

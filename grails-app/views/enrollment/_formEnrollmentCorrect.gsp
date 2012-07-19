@@ -25,12 +25,12 @@
               <g:passwordField name="password" required="" value="${user?.password}"/>
       </div>
 
-    <div class="fieldcontain required">
-              <label style="width: 150px;" for="password">
+    <div class="fieldcontain ${hasErrors(bean: user, field: 'confirmationPassword', 'error')} required">
+              <label style="width: 150px;" for="confirmationPassword">
                       <g:message code="enrollment.form.confirmPassword.label"/>
                       <span class="required-indicator">*</span>
               </label>
-              <g:passwordField name="confirmPassword" required="" value="${params?.confirmPassword}" placeholder="${message(code:"enrollment.form.confirmPassword.placeHolder.label")}"/>
+              <g:passwordField name="confirmationPassword" required="" value="${params?.confirmationPassword}" placeholder="${message(code:"enrollment.form.confirmPassword.placeHolder.label")}"/>
       </div>
 <br/>
 <legend><g:message code="enrollment.form.title2.label" /></legend>

@@ -15,7 +15,7 @@
 		<g:message code="user.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="password" required="" value="${userInstance?.password}"/>
+	<g:field type="password" name="password" required="" value="${userInstance?.password}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'nombre', 'error')} required">
@@ -82,6 +82,22 @@
 	<g:checkBox name="asistir" value="${userInstance?.asistir}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'asociacion', 'error')} required">
+	<label for="asociacion">
+		<g:message code="user.asociacion.label" default="Asociacion" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="asociacion" name="asociacion.id" from="${com.adventicket.Asociacion.list()}" optionKey="id" required="" value="${userInstance?.asociacion?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'confirmationPassword', 'error')} ">
+	<label for="confirmationPassword">
+		<g:message code="user.confirmationPassword.label" default="Confirmation Password" />
+		
+	</label>
+	<g:textField name="confirmationPassword" value="${userInstance?.confirmationPassword}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'enabled', 'error')} ">
 	<label for="enabled">
 		<g:message code="user.enabled.label" default="Enabled" />
@@ -104,6 +120,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="fechaDeNacimiento" precision="day"  value="${userInstance?.fechaDeNacimiento}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'imagenes', 'error')} ">
+	<label for="imagenes">
+		<g:message code="user.imagenes.label" default="Imagenes" />
+		
+	</label>
+	<g:select name="imagenes" from="${com.adventicket.Imagen.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.imagenes*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'passwordExpired', 'error')} ">

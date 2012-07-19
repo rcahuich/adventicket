@@ -196,4 +196,11 @@ class EnrollmentController {
         chain(action: "presend", model: [user: user])
     }
     
+    def searchAsociacion(){
+        log.debug "::::: ${params}"
+        def list = Asociacion.findAllByUnion(params.filter)
+        log.debug "::::: ${list}"
+        render(template:'asociacion', model:[asociacionList:list])
+    }
+    
 }

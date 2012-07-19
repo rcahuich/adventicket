@@ -124,7 +124,7 @@
                         <ul class="dropdown-menu">
                           <li><a href="${createLink(controller:'user', action:'ver')}"><i class="icon-user"></i> <g:message code="menu.miCuenta" /></a></li>
                           <li class="divider"></li>
-                          <li><a href="${createLink(controller:'logout')}"><i class="icon-off"></i> <g:message code="menu.cerrarSesion" /></a></li>
+                          <li><a href="${createLink(controller:'logout', action:'index')}"><i class="icon-off"></i> <g:message code="menu.cerrarSesion" /></a></li>
                         </ul>
                       </li>
 
