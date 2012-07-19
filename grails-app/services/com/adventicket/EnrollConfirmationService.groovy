@@ -41,4 +41,67 @@ class EnrollConfirmationService {
         }
         return conf
     }
+    
+    def checkConfirmation(String confirmationToken) {
+        if (log.traceEnabled) log.trace("checkConfirmation looking for confirmation token: $confirmationToken")
+        def conf = PendingEmailConfirmation.findByConfirmationToken(confirmationToken)
+        if (conf && (conf.confirmationToken == confirmationToken)) {
+            if (log.debugEnabled) {
+                log.debug( "Notifying application of valid email confirmation for user token ${conf.userToken}, email ${conf.emailAddress}")
+            }       
+            conf.delete()
+            return [valid: true, email: conf.emailAddress, token:conf.userToken]
+        } else {
+            if (log.traceEnabled) log.trace("checkConfirmation did not find confirmation token: $confirmationToken")
+            return [valid:false]
+        }
+    }
+    
+    void cullStaleConfirmations() {
+        
+        def subjectMail = "Por favor confirma tu cuenta de correo"
+
+        if (log.infoEnabled) {
+            log.info( "Checking for stale email confirmations...")
+        }
+        
+        def threshold = System.currentTimeMillis() - maxAge
+        def threshold2 = System.currentTimeMillis() - maxAgeConfirmation
+        def staleConfirmations = PendingEmailConfirmation.findAllByTimestampLessThan(new Date(threshold))
+        def staleConfirmationsPre = PendingEmailConfirmation.findAllByTimestampLessThan(new Date(threshold2))
+        
+        def c = 0
+        staleConfirmations.each() {
+            if (log.debugEnabled) {
+                log.debug( "Notifying application of stale email confirmation for user token ${it.userToken}")
+            }
+            it.delete()
+            c++
+        }
+        
+        if (log.infoEnabled) {
+            log.info( "Done check for stale email confirmations, found $c")
+        }
+        
+        def d = 0
+        staleConfirmationsPre.each() {
+            def email = it.emailAddress
+            // Tell application
+            if (log.debugEnabled) {
+                log.debug( "Notifying application of stale email pre confirmation for user token ${it.userToken}")
+            }
+            def contenido = groovyPageRenderer.render(view:"/mail/enrollmentRemember", model:[mail:email,uri:it.userToken])
+            mailService.sendMail {
+                to email
+                from grailsApplication.config.grails.fromMailAddresss
+                subject subjectMail
+                html contenido
+            }
+            d++
+        }
+        
+        if (log.infoEnabled) {
+            log.info( "Done check for pre stale email confirmations, found $d")
+        }
+    }
 }

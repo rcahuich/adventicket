@@ -30,7 +30,7 @@ class BootStrap {
             admin = new User(
                 username:'admin',
                 password:'admin00',
-                //confirmationPassword:'admin00',
+                confirmationPassword:'admin00',
                 nombre: 'Admin',
                 apellidoPaterno: 'Cahuich',
                 apellidoMaterno: '',
@@ -50,7 +50,7 @@ class BootStrap {
             evento = new User(
                 username:'evento',
                 password:'evento00',
-                //confirmationPassword:'evento00',
+                confirmationPassword:'evento00',
                 nombre: 'Evento',
                 apellidoPaterno: 'Cahuich',
                 apellidoMaterno: '',

@@ -46,6 +46,8 @@
 						
 							<g:sortableColumn property="username" title="${message(code: 'user.username.label', default: 'Username')}" />
 						
+							<g:sortableColumn property="password" title="${message(code: 'user.password.label', default: 'Password')}" />
+						
 							<g:sortableColumn property="nombre" title="${message(code: 'user.nombre.label', default: 'Nombre')}" />
 						
 							<g:sortableColumn property="apellidoPaterno" title="${message(code: 'user.apellidoPaterno.label', default: 'Apellido Paterno')}" />
@@ -62,6 +64,8 @@
 						<tr>
 						
 							<td>${fieldValue(bean: userInstance, field: "username")}</td>
+						
+							<td>${fieldValue(bean: userInstance, field: "password")}</td>
 						
 							<td>${fieldValue(bean: userInstance, field: "nombre")}</td>
 						
