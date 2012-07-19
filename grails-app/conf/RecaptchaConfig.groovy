@@ -17,7 +17,7 @@ environments {
   development {
     recaptcha {
       // Set to false to disable the display of captcha
-      enabled = false
+      enabled = true
 
       // Communicate using HTTPS
       useSecureAPI = false
