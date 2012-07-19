@@ -49,7 +49,7 @@
                                                   <div align="left" class="article-content"> 
                                                       <p label="Description"> <g:message code="enrollment.welcome2.label" /></p>
                                                       <p label="Description"> <g:message code="enrollment.welcome3.label" /></p>
-                                                      <p label="Description"> <g:message code="enrollment.welcome4e.label" /></p>
+                                                      <p label="Description"> <g:message code="enrollment.welcome4.label" /></p>
                                                       <p label="Description"> 
                                                         <g:message code="enrollment.welcome5.label" /> ${user.username} <br/>
                                                         <g:message code="enrollment.welcome6.label" /> ${user.confirmationPassword}
