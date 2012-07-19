@@ -46,6 +46,12 @@ class UrlMappings {
 			controller='logout'
 			action='index'
 		}
+
+                "/registro/confirmar/$id?" {
+                    controller = 'enrollment'
+                    action = "confirm"
+                }
+                
                 "500"(view:'/error/error')
                 "404"(view:'/error/notFound')
 	}

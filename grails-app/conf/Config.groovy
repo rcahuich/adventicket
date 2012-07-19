@@ -76,7 +76,7 @@ grails.resources.modules = {
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.serverURL = "http://localhost:8080"
+        grails.serverURL = "http://localhost:8080/adventicket"
         
         // Configuracion de Emails
         grails.fromMailAddress = "hospitalgdl@gmail.com"

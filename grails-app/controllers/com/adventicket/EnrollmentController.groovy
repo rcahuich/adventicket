@@ -1,18 +1,20 @@
 package com.adventicket
 
 import com.megatome.grails.RecaptchaService
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class EnrollmentController {
 
     def enrollConfirmationService
     def mailService
     RecaptchaService recaptchaService
+    def grailsApplication    
+    grails.gsp.PageRenderer groovyPageRenderer 
     static allowedMethods = [createEnrollment:"POST", send:"GET", correct:"GET"]
         
     def index() {}
     
     def createEnrollment() {
-        log.debug ":::: ${params}"
         //validar contrasenas
         if (params.password != params.confirmationPassword) {
             flash.error = message(code: 'enrollment.controller.differentPasswords.label')
@@ -33,14 +35,10 @@ class EnrollmentController {
         }
         //parsear fecha
         params.fechaDeNacimiento = Date.parse("dd/MM/yyyy",params.fechaDeNacimiento)
-        //Buscar Asociacion
-        //Asociacion aso = Asociacion.findByNombre(params.asociacion)
-        //log.debug "ID aso:: ${aso.id}"
-        //obtener instancia a partir de campos llenos
+
         def user = new User(params)
         user.accountLocked = true
         user.fechaDeAlta = new Date()
-        //user.asociacion = aso
         //Su foto
         def archivo = request.getFile('imagen')
         if (!archivo.empty) {
@@ -113,9 +111,8 @@ class EnrollmentController {
     }
     
     def correctUpdate(){
-        log.debug ":::: ${params}"
         //validar contrasenas
-        if (params.password != params.confirmPassword) {
+        if (params.password != params.confirmationPassword) {
             flash.error = message(code: 'enrollment.controller.differentPasswords.label')
             chain(action: "correct", model: [user: new User(params)])
             return
@@ -134,16 +131,13 @@ class EnrollmentController {
         }
         //parsear fecha
         params.fechaDeNacimiento = Date.parse("dd/MM/yyyy",params.fechaDeNacimiento)
-        //Buscar Asociacion
-        //Asociacion aso = Asociacion.findByNombre(params.asociacion)
-        //log.debug "ID aso:: ${aso.id}"
+        
         //obtener instancia a partir de campos llenos
-        log.debug "Valido fechas"
         def idUsuario =  session.getAt('idUsuario')
         def user = User.get(idUsuario)
         user.accountLocked = true
         user.fechaDeAlta = new Date()
-        //user.asociacion = aso
+        
         //Su foto
         def archivo = request.getFile('imagen')
         if (!archivo.empty) {
@@ -162,13 +156,13 @@ class EnrollmentController {
             usuario.imagenes << imagen
             usuario.save()
         }
-        log.debug "Guardo imagen"
+
         //validar captcha
         def recaptchaOK = true
         if (!recaptchaService.verifyAnswer(session, request.getRemoteAddr(), params)) {
              recaptchaOK = false
         }
-        log.debug "checando recapcha"
+
         //validar campos
         user.validate()
         if(user.hasErrors()) {
@@ -179,7 +173,7 @@ class EnrollmentController {
                 chain(action: "correct", model: [user: user])
                 return
         }
-        log.debug "Valido validate"
+
         //si captcha no coincide
         
         if(!recaptchaOK){
@@ -187,20 +181,99 @@ class EnrollmentController {
             chain(action: "correct", model: [user: user])
             return
         }
-        log.debug "Valido Capcha"
+
         //limpiamos captcha
         recaptchaService.cleanUp(session)
         
-        user.save(flush: true); 
-        log.debug "Guardo al usuario y manda a presend"
+        user.save(flush: true);
         chain(action: "presend", model: [user: user])
     }
     
-    def searchAsociacion(){
-        log.debug "::::: ${params}"
-        def list = Asociacion.findAllByUnion(params.filter)
-        log.debug "::::: ${list}"
-        render(template:'asociacion', model:[asociacionList:list])
+    def confirm(){
+        def result = enrollConfirmationService.checkConfirmation(params.id)
+        if(!result.valid){
+            render view: 'error'
+            return
+        }
+        
+        def user = User.get(result.token)
+        
+        if(!user){
+            render view: 'error'
+            return
+        }
+        
+        user.accountLocked = false
+        user.save()
+        def roles2 = [] as Set
+        roles2 << Role.findByAuthority('ROLE_ASISTENTE')
+        for(rol in roles2) {
+            UserRole.create(user, rol, false)
+        }
+        
+        def contenido = groovyPageRenderer.render(view:"/mail/welcome", model:[user:user])
+        //TODO parametrizar mensajes
+        mailService.sendMail {
+            to user.correo
+            from grailsApplication.config.grails.fromMailAddress
+            subject message(code: "enrollment.welcome.subject.label")
+            html contenido
+        }
+        
+        redirect(controller:"index", action:"index")
+        
+    }
+    
+    def obtieneListaDeRoles = { usuario ->
+        //log.debug "Obteniendo lista de roles"
+        def roles = Role.list()
+
+        def rolesFiltrados = [] as Set
+        if (SpringSecurityUtils.ifAnyGranted('ROLE_ADMIN')) {
+            //log.debug "Roles para ADMIN"
+            rolesFiltrados = roles
+        } else if(SpringSecurityUtils.ifAnyGranted('ROLE_EVENTO')) {
+            //log.debug "Roles para EVENTO"
+            for(rol in roles) {
+                if (!rol.authority.equals('ROLE_ADMIN') && !rol.authority.equals('ROLE_EVENTO')) {
+                    rolesFiltrados << rol
+                }
+            }
+        } else if(SpringSecurityUtils.ifAnyGranted('ROLE_ASISTENTE')) {
+            //log.debug "Roles para ASISTENTE"
+            for(rol in roles) {
+                if (rol.authority.equals('ROLE_USER')) {
+                    rolesFiltrados << rol
+                }
+            }
+        }
+        roles = rolesFiltrados
+        roles.sort { r1, r2 ->
+            r1.authority <=> r2.authority
+        }
+        Set userRoleNames = []
+        for (role in usuario?.authorities) {
+            userRoleNames << role.authority
+        }
+        LinkedHashMap<Role, Boolean> roleMap = [:]
+        for (role in roles) {
+            roleMap[(role)] = userRoleNames.contains(role.authority)
+        }
+        return roleMap
+    }
+    
+    def asignaRoles = { params ->
+        def roles = [] as Set
+        if (params.ROLE_ADMIN) {
+            roles << Role.findByAuthority('ROLE_ADMIN')
+        } else if (params.ROLE_EVENTO) {
+            roles << Role.findByAuthority('ROLE_EVENTO')
+        } else if (params.ROLE_ASISTENTE) {
+            roles << Role.findByAuthority('ROLE_ASISTENTE')
+        } else {
+            roles << Role.findByAuthority('ROLE_USER')
+        }
+        return roles
     }
     
 }

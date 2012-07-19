@@ -1,3 +1,4 @@
+
 <legend><g:message code="enrollment.form.title.label" /></legend>
 
       <div class="fieldcontain ${hasErrors(bean: user, field: 'username', 'error')} required">
@@ -168,10 +169,4 @@
 	<g:checkBox name="talVez" value="${user?.talVez}" />
 </div>
 -->
-
-
-
-
-  
-
 
