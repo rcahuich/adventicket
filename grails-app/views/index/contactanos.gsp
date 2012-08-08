@@ -88,7 +88,7 @@
                         <div class="control-group ${hasErrors(bean: index, field: 'comentario', 'error')}">
                           <label class="control-label" for="textarea">Comentario *</label>
                           <div class="controls">
-                            <g:textArea class="input-xlarge" name="comentario" value="${index?.comentario}" rows="6" cols="40"/>
+                            <g:textArea class="input-xlarge" name="comentario" value="${index?.comentario}" rows="6" cols="40" />
                             
                           </div>
                         </div>

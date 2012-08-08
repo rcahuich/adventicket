@@ -21,7 +21,7 @@
                             </tr>
                               <tr>
                                   <td class="w30" width="30"></td>
-                                  <td class="w580" width="580"><div align="center" id="headline"><p style="color: #333333; font-family: Helvetica Neue, Arial, Helvetica, Geneva, sans-serif; font-size: 32px; text-align: center; margin-top:0px; margin-bottom:30px;"><strong><g:message code="email.title.label"/></strong></p></div></td>
+                                  <td class="w580" width="580"><div align="center" id="headline"><img src="http://i1241.photobucket.com/albums/gg518/rbnseven/AT-2.png" border="0" width="290" height="70" alt="ADVENTicket icon"=""></div></td>
                                   <td class="w30" width="30"></td>
                               </tr>
                           </tbody>
@@ -47,9 +47,9 @@
                                               <td class="w580" width="580">
                                                 <p align="left" style="font-size: 18px; line-height:20px; color: #333333; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;"><singleline label="Title"><g:message code="index.contact1.label" /></singleline></p>
                                                   <div align="left" class="article-content"> 
-                                                      <p label="Description"> <g:message code="index.contact2.label" /> <br/> ${user.nombre}</p>
-                                                      <p label="Description"> <g:message code="index.contact3.label" /> <br/> ${user.mail}</p>
-                                                      <p label="Description"> <g:message code="index.contact4.label" /> <br/> ${user.comentario}</p>
+                                                      <p label="Description"> <g:message code="index.contact2.label" /> <br/> <i>${user.nombre}</i></p>
+                                                      <p label="Description"> <g:message code="index.contact3.label" /> <br/> <i>${user.mail}</i></p>
+                                                      <p label="Description"> <g:message code="index.contact4.label" /> <br/> <i>${user.comentario}</i></p>
                                                   </div>
                                               </td>
                                           </tr>

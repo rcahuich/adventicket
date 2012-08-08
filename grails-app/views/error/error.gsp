@@ -15,8 +15,8 @@
                     <a href="${createLink(uri: '/')}" class="btn btn-info btn-toolbar btn-large"><i class=" icon-home icon-white"></i> <g:message code="500.returnHome.label"/></a>
                 </div>
           </div>
-                <!-- 
+                
 		<g:renderException exception="${exception}" />
-                -->
+                
 	</body>
 </html>
