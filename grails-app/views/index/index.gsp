@@ -56,10 +56,15 @@
 						<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
 					</ul>
 					<h5>Installed Plugins</h5>
-					<ul>
-						sdkjflsdfjlsdjfhlasdjfhlasdjfhasldjfh
+                                        <ul>
+                                          <li>sdkjflsdfjlsdjfhlasdjfhlasdjfhasldjfh</li>
+                                          <li>sdkjflsdfjlsdjfhlasdjfhlasdjfhasldjfh</li>
+                                          <li>sdkjflsdfjlsdjfhlasdjfhlasdjfhasldjfh</li>
+						
 					</ul>
 				</div>
+                          
+                                <a href="${createLink(controller:'evento', action:'creaTuEvento')}" class="btn btn-primary">Crea tu Evento! &raquo;</a>
 			</aside>
                 
                 </div>
@@ -77,7 +82,7 @@
                     <fb:like href="http://www.facebook.com/ADVENTicket" send="false" width="270" show_faces="false" font="trebuchet ms"></fb:like>
                   </li>
                   <li>
-                    <a href="${createLink(controller:'evento', action:'creaTuEvento')}" class="btn btn-primary">Crea tu Evento! &raquo;</a>
+                    
                   </li>
                 </ul>
                 

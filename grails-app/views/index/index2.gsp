@@ -20,12 +20,6 @@
                             </center>
                           <div class="bs-links">
                             <ul class="quick-links">
-                              <li>
-                                <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=rcahuich&repo=event&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="112px" height="20px"></iframe>
-                              </li>
-                              <li>
-                                <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=rcahuich&repo=event&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98px" height="20px"></iframe>
-                              </li>
                               <li class="follow-btn">
                               <a href="https://twitter.com/rbnseven" class="twitter-follow-button" data-show-count="true" data-lang="es">Seguir a @rbnseven</a>
                               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
