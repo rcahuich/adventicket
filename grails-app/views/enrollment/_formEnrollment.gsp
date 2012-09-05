@@ -1,4 +1,4 @@
-<legend><g:message code="enrollment.form.title.label" /></legend>
+<legend-title><g:message code="enrollment.form.title.label" /></legend-title>
 
       <div class="fieldcontain ${hasErrors(bean: user, field: 'username', 'error')} required">
               <label style="width: 150px;" for="username">

@@ -38,12 +38,12 @@
               <img class="small-bs-icon" src="${resource(dir: 'images', file: 'contactanos.jpg')}" style="height: 400px; width: 220px;">
             </div>
             <div class="span9 columns">
+                 
                  <div id="map"></div>
                  
-                        <br />
-                  
+                 <br />
                  
-          	 <g:form name="solicitudInformacion" action="solicitud" class="form-horizontal" >
+          	 <g:form style="margin-left: 20px;" name="solicitudInformacion" action="solicitud" class="form-horizontal" >
                         <legend>Solicitar Información</legend>
                          
                         

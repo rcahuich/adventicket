@@ -16,7 +16,7 @@
             <img src="${resource(dir: 'images', file: 'AT-2.png')}" alt="" style="width: 240px; height: 50px; margin-left: 27px;">
             <hr>
             <label><g:message code="menu.username"/>:</label>
-            <input type='text' class='text_' name='j_username' id='username' placeholder='${message(code: "menu.username.placeHolder")}' required/>
+            <input type='text' class='text_' name='j_username' id='username' placeholder='${message(code: "menu.username.placeHolder")}' required autofocus=""/>
             <label><a href="#" class="rLink" tabindex="5"><g:message code="menu.olvidoContrasena" /></a><g:message code="menu.contrasena"/>:</label>
             <input type='password' class='text_' name='j_password' id='password' placeholder='${message(code: "menu.contrasena.placeHolder")}' required/>
           </fieldset>
@@ -29,7 +29,7 @@
           </footer>
   </form>
   <footer id="main">
-    <a href="${createLink(uri: '/')}"><g:message code="menu.inicio" /></a> | <a href="${createLink(controller: 'index', action: 'nosotros')}"><g:message code="menu.nosotros" /></a> | <a href="${createLink(controller: 'index', action: 'contactanos')}"><g:message code="menu.contactanos" /></a>
+    <a href="${createLink(uri: '/')}"><g:message code="menu.inicio" /></a> | <a href="${createLink(controller: 'index', action: 'nosotros')}"><g:message code="menu.nosotros" /></a> | <a href="${createLink(controller: 'index', action: 'contactanos')}"><g:message code="menu.contactanos" /></a> | <a href="${createLink(controller: 'enrollment')}"><g:message code="menu.registrate" /></a>
   </footer>
 </body>
 </html>

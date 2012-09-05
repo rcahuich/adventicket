@@ -15,7 +15,7 @@
           <p>Somos una organizacion sin fines de lucro, la cual te ofrece un portal donde Administrar tus eventos</p>
         </div>
         <div class="span9 columns">
-          <img class="small-bs-icon" src="${resource(dir: 'images', file: 'nosotros.jpg')}">
+          <img class="small-bs-icon" width="630" src="${resource(dir: 'images', file: 'nosotros.jpg')}">
           <br />
           <br />
           <p>Este proyecto se inicio con el fin de proveer un sistema a las Uniones o Asociaciones para administrar sus Eventos de 

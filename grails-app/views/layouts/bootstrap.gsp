@@ -139,14 +139,14 @@
 
       <g:layoutBody/>
 
+      
       <hr>
 
       <footer>
         <p>&copy; Company 2011</p>
       </footer>
-    
     </div>
-    
+      
       <!-- <r:layoutResources/>   -->
       <r:layoutResources/> 
   </body>
